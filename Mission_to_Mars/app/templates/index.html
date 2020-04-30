@@ -5,28 +5,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hot Finds</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
   <div class="container">
 
+  <!-- Jumbotron, NASA Mars News -->
+  <div class="container-fluid">
     <div class="jumbotron text-center">
-      <h1>Hot Finds On Craigslist</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Find An Awesome Deal!</a></p>
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button" style="background-color: rgb(72, 19, 218);"><b>Scrape New Data</b></a></p>
     </div>
 
-    <!-- Craigslist Listings -->
-    <div class="row" id="craiglist-listings">
-      <div class="col-md-12">
-        <h4 class="heading">{{data['news_title']}} {{data['news_para']}}</h4>
-        <small>{{listings.hood}}</small>
+    <h3><b>Latest Mars News</b></h3>
+    <h4><b>{{data['Article Title']}}</b></h4>
+    <h5>{{data['Article Desc']}}</h5>
+    <br>
+
+
+    <!-- Twitter weather, Featured Image -->
+    <div class="container-fluid">
+          
+      <div class="col-lg-8">
+        <h3><b>Featured Mars Image</b></h3>
+        <img src="{{data['img_url']}}" alt="Featured Imgage" class="img-thumbnail float-left w-50 h-50">
+      </div> 
+          
+      <div class="col-lg-4">
+        <h4><b>Current Weather on Mars</b></h4>
+        <p>{{data["Mars Weather"]}}</p>
+        <br>
+        <h4><b>Mars Facts</b></h4>
+        <h5>{{data['Mars Story'] | safe}}</h5>
       </div>
     </div>
+    <br>
 
+  <!-- Mars Hemisphere Images -->
+      <div class="container text-center">
+        <h3 class="text-center"><b>Mars Hemispheres</b></h3>
+        <hr>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <img class="card-img-top float-right" style="width: 100%; height: 100%;" src="{{data['Hemisphere One Image']}}" alt="Hemisphere_One_Image">
+            <h4><b>{{data['Hemisphere One Title']}}</b></h4>
+          </div>
+            
+            <div class="col-lg-6">
+              <img class="card-img-top float-right" style="width: 100%; height: 100%;" src="{{data['Hemisphere Two Image']}}" alt="Hemisphere_Two_Image">
+              <h4><b>{{data['Hemisphere Two Title']}}</b></h4>
+            </div>
+          </div>
+    
+      <div class="row">
+        <div class="col-lg-6">
+          <img class="card-img-top float-right" style="width: 100%; height: 100%;" src="{{data['Hemisphere Three Image']}}" alt="Hemisphere_Three_Image">
+          <h4><b>{{data['Hemisphere Three Title']}}</b></h4>
+        </div>             
+
+      <div class="col-lg-6">
+        <img class="card-img-top float-right" style="width: 100%; height: 100%;" src="{{data['Hemisphere Four Image']}}" alt="Hemisphere_Four_Image">
+        <h4><b>{{data['Hemisphere Four Title']}}</b></h4>
+      </div>
+    </div>
   </div>
 </body>
-
 </html>
 

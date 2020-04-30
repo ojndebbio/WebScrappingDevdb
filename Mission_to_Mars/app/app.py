@@ -15,17 +15,19 @@ mongo = PyMongo(app)
 # Query Root to  MongoDB & Pass Mars Data Into HTML (index.html) Template
 @app.route("/")
 def index():
-    mars = mongo.db.mars.find_one()
-    return render_template("index.html", data=mars)
+    NASA = mongo.db.mars.find_one()
+    NASA = scrape()
+    return render_template("index.html", data=NASA)
 
-# Scrape Route to Import 'scrape_mars.py' Script & Call 'scrape' Function
+# Scrape Route to Import 'scrape.py' Script & Call 'scrape' Function
 @app.route("/scrape")
-def scrapper():
+def scraper():
+    NASA = scrape()
     mars = mongo.db.mars
-    mars_data = scrape_mars.scrape_all()
-    mars.update({}, mars_data, upsert=True)
-    return "Scraping Successful"
+    mars.update({}, NASA, upsert=True)
+    # return render_template("index.html", data=NASA)
+    return redirect("/", code=302)
 
 # Define Main Behavior
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
